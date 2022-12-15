@@ -5,11 +5,10 @@
 #include <ctime>
 using namespace std;
 #include "SDL_include.h"
-
+#include "Component.h"
 
  
-class Sprite
-{
+class Sprite : public Component{
 private:
     SDL_Texture* texture;
     int width;
@@ -17,8 +16,8 @@ private:
     SDL_Rect clipRect;
 
 public:
-    Sprite();
-    Sprite(string file);
+    Sprite(GameObject& associated);
+    explicit Sprite(GameObject& associated,string file);
     ~Sprite();
     void Open(string file);
     void SetClip(int x , int y , int w, int h);
@@ -26,7 +25,9 @@ public:
     int GetWidth();
     int GetHeight();
     bool IsOpen();
-
+    bool Is(string type);
+    void Update(float dt);
+    void Render();
 
 };
 #endif

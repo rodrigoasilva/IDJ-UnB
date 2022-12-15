@@ -124,7 +124,7 @@ State& Game::GetState() {
 Game& Game::GetInstance() {
   
   if (Game::instance == nullptr) {
-    Game::instance = new Game("Rodrigo - 15/0147287", 1024, 600);
+    Game::instance = new Game("Rodrigo Andrade da Silva - 15/0147287", 1024, 600);
   }
   return *instance;
 }

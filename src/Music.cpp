@@ -49,12 +49,19 @@ void Music::Stop(int msToStop) {
 void Music::Open(string file) {
 
 music = Mix_LoadMUS(file.c_str());
+ if (Music::music == nullptr) {
+    SDL_Log("Unable to load music Mix_LoadMUS: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
 
 }
 
 bool Music::IsOpen(){
 
-return music != nullptr;
+    if (Music::music != nullptr) {
+    return true;
+  }
+  return false;
 
 }
 

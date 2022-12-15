@@ -1,5 +1,5 @@
-bin/Game.o: src/Game.cpp include/SDL_include.h include/SDL2/SDL_image.h \
- include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
+bin/Sound.o: src/Sound.cpp include/Sound.h include/SDL2/SDL.h \
+ include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
  include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
@@ -23,12 +23,10 @@ bin/Game.o: src/Game.cpp include/SDL_include.h include/SDL2/SDL_image.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
- include/SDL2/SDL_mixer.h include/Game.h include/SDL_include.h \
- include/State.h include/Sprite.h include/Component.h include/SDL2/SDL.h \
- include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/Music.h include/Game.h include/State.h
-include/SDL_include.h:
-include/SDL2/SDL_image.h:
+ include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
+ include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
+ include/Rect.h include/Vec2.h include/GameObject.h include/Component.h
+include/Sound.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
@@ -78,17 +76,13 @@ include/SDL2/SDL_timer.h:
 include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
-include/SDL2/SDL_mixer.h:
-include/Game.h:
-include/SDL_include.h:
-include/State.h:
-include/Sprite.h:
-include/Component.h:
+include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
+include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/Music.h:
-include/Game.h:
-include/State.h:
+include/GameObject.h:
+include/Component.h:

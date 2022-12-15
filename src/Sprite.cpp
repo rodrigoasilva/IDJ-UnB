@@ -6,9 +6,10 @@ using namespace std;
 #include "Game.h"
 #include "State.h"
 #include "Sprite.h"
+#include "Resources.h"
 
 
-/*Sprite::Sprite(GameObject& associated) : Component(associated),texture(nullptr){
+Sprite::Sprite(GameObject& associated) : Component(associated),texture(nullptr){
 
 
      width = 0;
@@ -16,8 +17,8 @@ using namespace std;
  
 
 }
-*/
-Sprite::Sprite (GameObject& associated,string file) : Component(associated),texture(nullptr){
+
+Sprite::Sprite(GameObject& associated,string file) : Component(associated),texture(nullptr){
 
    Open(file);
   
@@ -40,18 +41,18 @@ Sprite::~Sprite() {
 
 void Sprite::Open(string file) {
 
-   
-     if (texture != nullptr) {
-    SDL_DestroyTexture(texture);
+if (Sprite::texture != nullptr) {
+    SDL_DestroyTexture(Sprite::texture);
   }
+  Sprite::texture = Resources::GetImage(file);
   /* Loads texture. */
-  texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(),
+  Sprite::texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(),
                                     file.c_str());
-  if (texture == nullptr) {
+  if (Sprite::texture == nullptr) {
     SDL_Log("Unable to initialize Texture: %s", SDL_GetError());
     exit(EXIT_FAILURE);
   }
-  if (SDL_QueryTexture(texture,
+if (SDL_QueryTexture(Sprite::texture,
                        nullptr,
                        nullptr,
                        &width,
@@ -59,12 +60,9 @@ void Sprite::Open(string file) {
     SDL_Log("Unable to initialize Query Texture: %s", SDL_GetError());
     exit(EXIT_FAILURE);
   }
-
   /* Clips texture. */
-printf("Sprite::Open x = %d, y = %d, w = %d, h = %d\n", (int)associated.box.x, (int)associated.box.y, width, height);
-  SetClip((int)Sprite::associated.box.x, (int)associated.box.y,
-          width, height);
-SetClip(0, 0, width, height);
+SetClip(0, 0, Sprite::width, Sprite::height);
+  SetClip(0, 0, Sprite::width, Sprite::height);
     
 }
 
@@ -120,13 +118,13 @@ bool Sprite::Is(std::string type) {
 
 void Sprite::Render() {
 
-  //printf("Sprite::Render box: x = %f, y = %f, w = %d, h = %d\n", associated.box.x, associated.box.y, Sprite::clipRect.w, Sprite::clipRect.h);
   SDL_Rect dstRect;
   dstRect.x = Sprite::associated.box.x;
   dstRect.y = Sprite::associated.box.y;
   dstRect.w = Sprite::clipRect.w;
   dstRect.h = Sprite::clipRect.h;
-  /* Rendering texture into Game's renderer. */
+
+  
   if (SDL_RenderCopy(Game::GetInstance().GetRenderer(),
                      Sprite::texture,
                      &clipRect,

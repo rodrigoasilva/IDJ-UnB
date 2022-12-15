@@ -28,7 +28,7 @@ bin/State.o: src/State.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Music.h include/Game.h \
  include/State.h include/Face.h include/Vec2.h include/Sound.h \
- include/Sprite.h
+ include/Sprite.h include/TileMap.h include/TileSet.h include/TileSet.h
 include/SDL_include.h:
 include/Game.h:
 include/SDL_include.h:
@@ -98,3 +98,6 @@ include/Face.h:
 include/Vec2.h:
 include/Sound.h:
 include/Sprite.h:
+include/TileMap.h:
+include/TileSet.h:
+include/TileSet.h:

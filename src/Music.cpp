@@ -8,7 +8,7 @@ using namespace std;
 #include "State.h"
 #include "Sprite.h"
 #include "Music.h"
-
+#include "Resources.h"
 
 Music::Music() : music(nullptr){
 
@@ -53,7 +53,7 @@ music = Mix_LoadMUS(file.c_str());
     SDL_Log("Unable to load music Mix_LoadMUS: %s", SDL_GetError());
     exit(EXIT_FAILURE);
   }
-
+  Music::music = Resources::GetMusic(file);
 }
 
 bool Music::IsOpen(){

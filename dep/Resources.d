@@ -1,13 +1,11 @@
-bin/Music.o: src/Music.cpp include/SDL_include.h include/Game.h \
- include/SDL_include.h include/SDL2/SDL_mixer.h include/SDL2/SDL_stdinc.h \
+bin/Resources.o: src/Resources.cpp include/Resources.h include/SDL2/SDL.h \
+ include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
- include/SDL2/SDL_rwops.h include/SDL2/SDL_error.h \
- include/SDL2/SDL_audio.h include/SDL2/SDL_endian.h \
- include/SDL2/SDL_mutex.h include/SDL2/SDL_thread.h \
- include/SDL2/SDL_atomic.h include/SDL2/SDL_version.h include/State.h \
- include/Sprite.h include/Component.h include/SDL2/SDL.h \
- include/SDL2/SDL_main.h include/SDL2/SDL_assert.h \
+ include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
+ include/SDL2/SDL_audio.h include/SDL2/SDL_error.h \
+ include/SDL2/SDL_endian.h include/SDL2/SDL_mutex.h \
+ include/SDL2/SDL_thread.h include/SDL2/SDL_rwops.h \
  include/SDL2/SDL_clipboard.h include/SDL2/SDL_cpuinfo.h \
  include/SDL2/SDL_events.h include/SDL2/SDL_video.h \
  include/SDL2/SDL_pixels.h include/SDL2/SDL_rect.h \
@@ -23,34 +21,29 @@ bin/Music.o: src/Music.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_messagebox.h include/SDL2/SDL_metal.h \
  include/SDL2/SDL_power.h include/SDL2/SDL_render.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
- include/SDL2/SDL_timer.h include/SDL2/SDL_locale.h \
- include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/Music.h include/Game.h include/State.h \
- include/Sprite.h include/Music.h include/Resources.h
-include/SDL_include.h:
-include/Game.h:
-include/SDL_include.h:
-include/SDL2/SDL_mixer.h:
+ include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
+ include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
+ include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
+ include/SDL2/SDL_ttf.h include/Game.h include/SDL_include.h \
+ include/State.h include/Sprite.h include/Component.h \
+ include/GameObject.h include/Rect.h include/Vec2.h include/Music.h \
+ include/Game.h
+include/Resources.h:
+include/SDL2/SDL.h:
+include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
 include/SDL2/SDL_config.h:
 include/SDL2/SDL_platform.h:
 include/SDL2/begin_code.h:
 include/SDL2/close_code.h:
-include/SDL2/SDL_rwops.h:
-include/SDL2/SDL_error.h:
+include/SDL2/SDL_assert.h:
+include/SDL2/SDL_atomic.h:
 include/SDL2/SDL_audio.h:
+include/SDL2/SDL_error.h:
 include/SDL2/SDL_endian.h:
 include/SDL2/SDL_mutex.h:
 include/SDL2/SDL_thread.h:
-include/SDL2/SDL_atomic.h:
-include/SDL2/SDL_version.h:
-include/State.h:
-include/Sprite.h:
-include/Component.h:
-include/SDL2/SDL.h:
-include/SDL2/SDL_main.h:
-include/SDL2/SDL_assert.h:
+include/SDL2/SDL_rwops.h:
 include/SDL2/SDL_clipboard.h:
 include/SDL2/SDL_cpuinfo.h:
 include/SDL2/SDL_events.h:
@@ -82,17 +75,20 @@ include/SDL2/SDL_render.h:
 include/SDL2/SDL_shape.h:
 include/SDL2/SDL_system.h:
 include/SDL2/SDL_timer.h:
+include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
+include/Game.h:
+include/SDL_include.h:
+include/State.h:
+include/Sprite.h:
+include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
 include/Music.h:
 include/Game.h:
-include/State.h:
-include/Sprite.h:
-include/Music.h:
-include/Resources.h:

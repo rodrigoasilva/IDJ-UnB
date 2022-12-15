@@ -7,6 +7,7 @@ using namespace std;
 #include "SDL_include.h"
 #include "Game.h"
 #include "State.h"
+#include "Resources.h"
 
 
 Game* Game::instance = nullptr;
@@ -33,7 +34,7 @@ Game::Game(string title, int  width  , int  height )
         }
 
      
-        int flagsMIX = (MIX_INIT_OGG);
+        int flagsMIX = (/*MIX_INIT_MP3 |*/ MIX_INIT_OGG);
         int initMIX = Mix_Init(flagsMIX);
         if ((initMIX & flagsMIX) != flagsMIX) {
             cout << "Unable to Mix_Init: " << Mix_GetError() << endl;
@@ -58,18 +59,22 @@ Game::Game(string title, int  width  , int  height )
             exit(1);
         }
 
+        //Cria o renderizador
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (renderer == nullptr) {
             cout << "Unable to create renderer: " << SDL_GetError() << endl;
             exit(1);
         }
 
+        
+
+
 
     }
     else{
 
-        cout <<"A instancia ja existe"<< endl;
-        exit(1);
+          Game::state = new State();
+
     }
     
  
@@ -80,6 +85,10 @@ Game::~Game(){
 
 
     delete state;
+
+  Resources::ClearImages();
+  Resources::ClearMusics();
+  Resources::ClearSounds();
     
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

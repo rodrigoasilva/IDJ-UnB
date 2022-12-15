@@ -27,7 +27,7 @@ void Sound::Play(int times){
 
     channel = Mix_PlayChannel( -1 ,  chunk, times-1);
     if (channel == -1) {
-    SDL_Log("Unable to play sound Mix_PlayChannel: %s", SDL_GetError());
+    SDL_Log("Mix_PlayChannel: %s", SDL_GetError());
     exit(EXIT_FAILURE);
   }
 
@@ -38,7 +38,7 @@ void Sound::Stop(){
     if(chunk!=nullptr){
 
  if(Mix_HaltChannel(channel) != 0) {
-      SDL_Log("HOW DID THIS BREAK?? Mix_HaltChannel: %s", SDL_GetError());
+      SDL_Log("Mix_HaltChannel: %s", SDL_GetError());
       exit(EXIT_FAILURE);
     }
 
@@ -50,7 +50,7 @@ void Sound::Open(string file) {
     chunk = Mix_LoadWAV(file.c_str());
     if(chunk==nullptr){
 
-           SDL_Log("Unable to open sound Mix_LoadWAV: %s", SDL_GetError());
+           SDL_Log("Mix_LoadWAV: %s", SDL_GetError());
           exit(EXIT_FAILURE);
     }
 }

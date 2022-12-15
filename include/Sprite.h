@@ -17,7 +17,7 @@ private:
 
 public:
     Sprite(GameObject& associated);
-    explicit Sprite(GameObject& associated,string file);
+    Sprite(GameObject& associated,string file);
     ~Sprite();
     void Open(string file);
     void SetClip(int x , int y , int w, int h);

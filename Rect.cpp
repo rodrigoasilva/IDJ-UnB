@@ -50,3 +50,17 @@ Rect Rect::operator*(Vec2 scale) {
 Rect Rect::operator*=(Vec2 v) {
     return *this = MulVec2(v);
 }
+
+void Rect::SetPos(Vec2 pos) {
+
+  x = pos.x;
+  y = pos.y;
+
+}
+
+
+Vec2 Rect::GetPos() {
+
+  return Vec2(x, y);
+
+}

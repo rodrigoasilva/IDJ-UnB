@@ -88,7 +88,7 @@ void Sprite::Render(int x ,  int y) {
   dstrect.h = clipRect.h;
 
 
-  SDL_RenderCopy(Game::GetInstance().GetRenderer(),texture, &clipRect , &dstrect);
+  SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture, &clipRect , &dstrect,associated.angleDeg,NULL,SDL_FLIP_NONE);
 }
 
 int Sprite::GetWidth() {
@@ -121,4 +121,23 @@ void Sprite::Render() {
 
   Render(associated.box.x - Camera::pos.x,associated.box.y - Camera::pos.y);
   
+}
+
+void Sprite::SetScale(float scaleX, float scaleY) {
+    auto &box = associated.box;
+    if(scaleX != 0){
+        scale.x = scaleX;
+        box.w = width * scaleX;
+        box.x = box.GetCenter().x - box.w/2;
+    }
+
+    if(scaleY != 0){
+        scale.y = scaleY;
+        box.h = height * scaleY;
+        box.y = box.GetCenter().y - box.h/2;
+    }
+}
+
+Vec2 Sprite::GetScale() {
+    return scale;
 }

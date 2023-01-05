@@ -117,6 +117,7 @@ void Game::Run(){
     
     state = new State;
     GetInstance().state->LoadAssets();
+    state->Start();
     while(state->QuitRequested() != true){
      CalculateDeltaTime();   
      InputManager::GetInstance().Update();

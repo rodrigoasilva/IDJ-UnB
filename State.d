@@ -28,9 +28,9 @@ bin/State.o: src/State.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Music.h include/Game.h \
  include/State.h include/Camera.h include/CameraFollower.h \
- include/Component.h include/Face.h include/InputManager.h include/Vec2.h \
- include/Sound.h include/Sprite.h include/TileMap.h include/TileSet.h \
- include/TileSet.h
+ include/Component.h include/InputManager.h include/Vec2.h \
+ include/Sound.h include/Alien.h include/Minion.h include/Sprite.h \
+ include/TileMap.h include/TileSet.h include/TileSet.h include/Rect.h
 include/SDL_include.h:
 include/Game.h:
 include/SDL_include.h:
@@ -99,11 +99,13 @@ include/State.h:
 include/Camera.h:
 include/CameraFollower.h:
 include/Component.h:
-include/Face.h:
 include/InputManager.h:
 include/Vec2.h:
 include/Sound.h:
+include/Alien.h:
+include/Minion.h:
 include/Sprite.h:
 include/TileMap.h:
 include/TileSet.h:
 include/TileSet.h:
+include/Rect.h:

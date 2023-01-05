@@ -1,4 +1,3 @@
-
 #include "Resources.h"
 #include "Game.h"
 std::unordered_map<std::string, SDL_Texture*> Resources::imageTable;
@@ -29,6 +28,7 @@ void Resources::ClearImages() {
 
 Mix_Music* Resources::GetMusic(std::string file) {
 
+
   std::unordered_map<std::string, Mix_Music*>::const_iterator foundIt =
                                             Resources::musicTable.find(file);
 
@@ -54,6 +54,7 @@ void Resources::ClearMusics() {
 }
 
 Mix_Chunk* Resources::GetSound(std::string file) {
+
 
   std::unordered_map<std::string, Mix_Chunk*>::const_iterator foundIt =
                                             Resources::soundTable.find(file);

@@ -18,4 +18,4 @@ public:
 
 };
 
-#endif //SRC_CAMERAFOLLOWER_H
+#endif

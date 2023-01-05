@@ -26,6 +26,8 @@ private:
 public:
   GameObject();
   ~GameObject();
+  void Start();
+  bool started;
   void Update(float dt);
   void Render();
   void RequestDelete();
@@ -34,6 +36,8 @@ public:
   Component* GetComponent(string type);
   Rect box;
   bool IsDead();
+  double angleDeg;
+
  
 };
 #endif

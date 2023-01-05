@@ -7,25 +7,31 @@ using namespace std;
 #include "State.h"
 #include "Camera.h"
 #include "CameraFollower.h"
-#include "Face.h"
 #include "InputManager.h"
 #include <math.h>
 #include "Vec2.h"
 #include "Sound.h"
+#include "Alien.h"
+#include "Minion.h"
 #include "Sprite.h"
 #include "TileMap.h"
 #include "TileSet.h"
-#include "Vec2.h"
+#include "Rect.h"
+#include <stack>
 
+State::State()  : music(Music()),started(false){
 
-State::State()  : music(Music()){
-
+ 
   GameObject* bg = new GameObject();
   bg->box.x = 0;
   bg->box.y = 0;
   bg->AddComponent(new Sprite(*bg, "img/ocean.jpg"));
-   bg->AddComponent(new CameraFollower(*bg));
+  bg->AddComponent(new CameraFollower(*bg));
+ 
   objectArray.emplace_back(bg);
+  
+  
+
  
 
 
@@ -35,19 +41,30 @@ State::State()  : music(Music()){
   tileMap->box.y = 0;
   tileMap->AddComponent(new TileMap(*tileMap, "map/tileMap.txt", tileSet));
   objectArray.emplace_back(tileMap);
+  GameObject* go = new GameObject();
+  go->AddComponent(new Alien(*go, 8));
+  go->box.SetPos(Vec2(512 - go->box.w/2, 300 - go->box.h/2));
+  go->box.x = 512 - go->box.w/2;
+  go->box.y = 300 - go->box.h/2;
+  
+
+  AddObject(go);
+ 
+ 
+
+
   quitRequested = false;
 
 }
 
 void State::LoadAssets() {
 
-	music.Open("audio/stageState.ogg");
+	 music.Open("audio/stageState.ogg");
     music.Play();
 
 }
 
-void State::Update(float dt) {
-
+void State::Update(float dt){
   
 	int mouseX, mouseY;
 
@@ -57,7 +74,7 @@ void State::Update(float dt) {
 	SDL_GetMouseState(&mouseX, &mouseY);
   Camera::Update(dt);  
   State::quitRequested = InputManager::GetInstance().QuitRequested();
-	
+
 	
   if(InputManager::GetInstance().KeyPress(SDLK_ESCAPE)) {
 				quitRequested = true;
@@ -67,39 +84,13 @@ void State::Update(float dt) {
 				quitRequested = true;
 			} 
 
-  if(InputManager::GetInstance().MousePress(LEFT_MOUSE_BUTTON)) {
 
-			for(int i = objectArray.size() - 1; i >= 0; --i) {
-				GameObject* go = (GameObject*) objectArray[i].get();
-
-
-				if(go->box.Contains( {(float)mouseX + Camera::pos.x, (float)mouseY + Camera::pos.y} ) ) {
-					Face* face = (Face*)go->GetComponent( "Face" );
-					if ( nullptr != face ) {
-						// Aplica dano
-						face->Damage(std::rand() % 10 + 10);
-						// Sai do loop (só queremos acertar um)
-						break;
-					}
-				}
-			}
-		}
-
-	  if (InputManager::GetInstance().KeyPress(SDLK_SPACE)) {
-    Vec2 objPos = Vec2( 150, 0 ).Rotate( -3.14156 + 3.14156*(rand() % 1001)/500.0 ) + Vec2( mouseX + Camera::pos.x , mouseY + Camera::pos.y);
-    State::AddObject((int)objPos.x, (int)objPos.y);
-  }
-	
+	 
 		
   for (int i = (int)objectArray.size() - 1; i >= 0; i--) {
     State::objectArray.at(i)->Update(dt);
   }
-  for (int i = (int)objectArray.size() - 1; i >= 0; i--) {
-    if (objectArray.at(i)->IsDead()) {
-        printf("State::Update ta tocando musica\n");
-        objectArray.erase(objectArray.begin() + i);
-    }
-  }
+ 
 
 }
 
@@ -107,11 +98,9 @@ void State::Render() {
   
  
   
-   
-
    for (unsigned int i = 0; i < objectArray.size(); i++) {
    
-   objectArray.at(i).get()->Render();
+   objectArray[i]->Render();
   
   }
 
@@ -130,31 +119,40 @@ State::~State() {
 
 
 
-void State::AddObject (int mouseX , int mouseY)  {
-
-	GameObject* penguim = new GameObject();
-  
-  
-  penguim->box.x = mouseX;
-  penguim->box.y = mouseY;
-
-  
-  penguim->AddComponent(new Sprite(*penguim, "img/penguinface.png"));
-  penguim->AddComponent(new Sound(*penguim, "audio/boom.wav"));
-  penguim->AddComponent(new Face(*penguim));
-
-  penguim->box.x -= static_cast<Sprite*>(penguim->GetComponent("Sprite"))->GetWidth() / 2;
-  penguim->box.y -= static_cast<Sprite*>(penguim->GetComponent("Sprite"))->GetHeight() / 2;
-
-  penguim->box.x -=
-      static_cast<Sprite*>(penguim->GetComponent("Sprite"))->GetWidth() / 2;
-  penguim->box.y -=
-      static_cast<Sprite*>(penguim->GetComponent("Sprite"))->GetHeight() / 2;
-
-  
-  objectArray.emplace_back(penguim);
-
+void State::AddObject(int mouseX , int mouseY)  {
 
 
  
+}
+
+void State::Start(){
+
+  LoadAssets();
+   
+  for (unsigned int i = 0; i < State::objectArray.size(); i++) {
+    State::objectArray[i]->Start();
+  }
+  State::started = true;
+
+}
+
+std::weak_ptr< GameObject > State::AddObject(GameObject* go){
+ 
+ shared_ptr<GameObject> gameObject(go);
+    objectArray.push_back(gameObject);
+    if(started){
+        gameObject->Start();
+    }
+    return weak_ptr<GameObject>(gameObject);
+
+}
+
+
+std::weak_ptr< GameObject > State::GetObjectPtr(GameObject* go){
+ for (auto &i : objectArray) {
+        if(i.get() == go){
+            return weak_ptr<GameObject>(i);
+        }
+    }
+    return weak_ptr<GameObject>();
 }

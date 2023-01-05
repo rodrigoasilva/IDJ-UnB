@@ -6,6 +6,7 @@
 using namespace std;
 #include "SDL_include.h"
 #include "Component.h"
+#include "Vec2.h"
 
  
 class Sprite : public Component{
@@ -14,6 +15,7 @@ private:
     int width;
     int height;
     SDL_Rect clipRect;
+    Vec2 scale; 
 
 public:
     Sprite(GameObject& associated);
@@ -28,6 +30,8 @@ public:
     bool Is(string type);
     void Update(float dt);
     void Render();
+    void SetScale(float scaleX, float scaleY);
+    Vec2 GetScale();
 
 };
 #endif

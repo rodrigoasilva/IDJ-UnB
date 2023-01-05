@@ -38,7 +38,7 @@ void InputManager::Update(){
 
    
     
-    while (SDL_PollEvent(&event)) { 
+    while(SDL_PollEvent(&event)) { 
 
          if (event.key.repeat != 1) {
       if (event.type == SDL_QUIT) {

@@ -17,7 +17,6 @@ private:
    
    Music music;
    bool quitRequested;
-   void Input();
    void AddObject(int mouseX  , int mouseY );
    vector<unique_ptr<GameObject>> objectArray;
 public:

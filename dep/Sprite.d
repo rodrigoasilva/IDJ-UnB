@@ -27,7 +27,7 @@ bin/Sprite.o: src/Sprite.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
  include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Music.h include/Game.h \
- include/State.h include/Sprite.h include/Resources.h
+ include/State.h include/Sprite.h include/Resources.h include/Camera.h
 include/SDL_include.h:
 include/Game.h:
 include/SDL_include.h:
@@ -95,3 +95,4 @@ include/Game.h:
 include/State.h:
 include/Sprite.h:
 include/Resources.h:
+include/Camera.h:

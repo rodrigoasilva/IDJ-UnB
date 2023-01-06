@@ -27,7 +27,7 @@ bin/Game.o: src/Game.cpp include/SDL_include.h include/SDL2/SDL_image.h \
  include/State.h include/Sprite.h include/Component.h include/SDL2/SDL.h \
  include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
  include/Vec2.h include/Music.h include/Game.h include/State.h \
- include/Resources.h
+ include/Resources.h include/InputManager.h
 include/SDL_include.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
@@ -94,3 +94,4 @@ include/Music.h:
 include/Game.h:
 include/State.h:
 include/Resources.h:
+include/InputManager.h:

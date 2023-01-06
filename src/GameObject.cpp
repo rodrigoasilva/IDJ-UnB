@@ -63,6 +63,7 @@ void GameObject::RemoveComponent(Component *cpt){
   bool naoEsta = true;
   while (posicao != components.size()) {
     
+    // PRINCIPALMENTE PARA UNIQUE_PTR
     if (components.at(posicao).get() == cpt) {
       components.erase(components.begin() + posicao);
       naoEsta = false;

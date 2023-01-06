@@ -1,6 +1,6 @@
 
 #include "TileMap.h"
-
+#include "Camera.h"
 #include <fstream>
 TileMap::TileMap(GameObject& associated, std::string file, TileSet* tileSet)
     : Component(associated) {
@@ -96,23 +96,25 @@ int& TileMap::At(int x, int y, int z) {
 
 void TileMap::Render() {
 
-  for (unsigned int i = 0; i < TileMap::mapDepth; i++) {
-  for (int i = TileMap::mapDepth - 1; i >= 0; i--) {
-    TileMap::RenderLayer(i,
-                         TileMap::tileSet->GetTileWidth(),
-                         TileMap::tileSet->GetTileHeight());
-  }
-}}
+  for (int z = 0; z < mapDepth; ++z) {
+        RenderLayer(z, (int)(Camera::pos.x), (int)(Camera::pos.y));
+    }
+
+ }
 
 void TileMap::RenderLayer(int layer, int cameraX, int cameraY) {
 
-  for (int j = 0; j < TileMap::mapHeight; j++) {
-    for (int i = 0; i < TileMap::mapWidth; i++) {
-      TileMap::tileSet->RenderTile(TileMap::At(i, j, layer),
-                                   i * TileMap::tileSet->GetTileWidth(),
-                                   j * TileMap::tileSet->GetTileHeight());
+
+   for (int i = 0; i < mapWidth; i++){
+        for (int j = 0; j < mapHeight; j++){
+            auto x = (int)(i * tileSet->GetTileWidth() - cameraX -  0.9* Camera::pos.x * layer);
+            auto y = (int)(j * tileSet->GetTileHeight() - cameraY - 0.9* Camera::pos.y * layer);
+
+            tileSet->RenderTile((unsigned)At(i, j, layer), x, y);
+        }
     }
-  }
+
+
 }
 int TileMap::GetWidth() {
   return TileMap::mapWidth;

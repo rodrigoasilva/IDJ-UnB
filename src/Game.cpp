@@ -8,12 +8,12 @@ using namespace std;
 #include "Game.h"
 #include "State.h"
 #include "Resources.h"
+#include "InputManager.h"
 
 
 Game* Game::instance = nullptr;
 
-Game::Game(string title, int  width  , int  height )
-{
+Game::Game(string title, int  width  , int  height ) :  dt(0), frameStart(0){
 
 
     if(instance==nullptr){
@@ -34,7 +34,7 @@ Game::Game(string title, int  width  , int  height )
         }
 
      
-        int flagsMIX = (/*MIX_INIT_MP3 |*/ MIX_INIT_OGG);
+        int flagsMIX = ( MIX_INIT_OGG);
         int initMIX = Mix_Init(flagsMIX);
         if ((initMIX & flagsMIX) != flagsMIX) {
             cout << "Unable to Mix_Init: " << Mix_GetError() << endl;
@@ -66,6 +66,7 @@ Game::Game(string title, int  width  , int  height )
             exit(1);
         }
 
+        //Initialize storedState
         
 
 
@@ -117,7 +118,9 @@ void Game::Run(){
     state = new State;
     GetInstance().state->LoadAssets();
     while(state->QuitRequested() != true){
-     state->Update(45);
+     CalculateDeltaTime();   
+     InputManager::GetInstance().Update();
+     state->Update(GetDeltaTime());
      state->Render();
      SDL_RenderPresent(GetInstance().renderer);
      SDL_Delay(33);
@@ -137,3 +140,18 @@ Game& Game::GetInstance() {
   }
   return *instance;
 }
+
+
+void Game::CalculateDeltaTime(){
+
+    int ticks = SDL_GetTicks();
+    dt = (ticks - frameStart)/1000.;
+    frameStart = ticks;
+
+} 
+
+float Game::GetDeltaTime(){
+
+    return dt;
+}
+

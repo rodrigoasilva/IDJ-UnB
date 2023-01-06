@@ -7,6 +7,7 @@ using namespace std;
 #include "State.h"
 #include "Sprite.h"
 #include "Resources.h"
+#include "Camera.h"
 
 
 Sprite::Sprite(GameObject& associated) : Component(associated),texture(nullptr){
@@ -118,18 +119,8 @@ bool Sprite::Is(std::string type) {
 
 void Sprite::Render() {
 
-  SDL_Rect dstRect;
-  dstRect.x = Sprite::associated.box.x;
-  dstRect.y = Sprite::associated.box.y;
-  dstRect.w = Sprite::clipRect.w;
-  dstRect.h = Sprite::clipRect.h;
-
+  //printf("Sprite::Render box: x = %f, y = %f, w = %d, h = %d\n", associated.box.x, associated.box.y, Sprite::clipRect.w, Sprite::clipRect.h);
+  Render(associated.box.x - Camera::pos.x,associated.box.y - Camera::pos.y);
+  /* Rendering texture into Game's renderer. */
   
-  if (SDL_RenderCopy(Game::GetInstance().GetRenderer(),
-                     Sprite::texture,
-                     &clipRect,
-                     &dstRect) != 0) {
-    SDL_Log("Unable to initialize Render Copy: %s", SDL_GetError());
-    exit(EXIT_FAILURE);
-  }
 }

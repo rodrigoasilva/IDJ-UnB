@@ -35,7 +35,7 @@ float Vec2::InclX() {
 }
 
 float Vec2::InclXDeg() {
-    return (float)(InclX() * (180.0f/M_PI));//rad to deg
+    return (float)(InclX() * (180.0f/M_PI));
 }
 
 float Vec2::Incl(Vec2 v) {

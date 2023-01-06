@@ -34,7 +34,7 @@ Game::Game(string title, int  width  , int  height ) :  dt(0), frameStart(0){
         }
 
      
-        int flagsMIX = ( MIX_INIT_OGG);
+        int flagsMIX = (/*MIX_INIT_MP3 |*/ MIX_INIT_OGG);
         int initMIX = Mix_Init(flagsMIX);
         if ((initMIX & flagsMIX) != flagsMIX) {
             cout << "Unable to Mix_Init: " << Mix_GetError() << endl;
@@ -117,6 +117,7 @@ void Game::Run(){
     
     state = new State;
     GetInstance().state->LoadAssets();
+    state->Start();
     while(state->QuitRequested() != true){
      CalculateDeltaTime();   
      InputManager::GetInstance().Update();
@@ -136,7 +137,7 @@ State& Game::GetState() {
 Game& Game::GetInstance() {
   
   if (Game::instance == nullptr) {
-    Game::instance = new Game("Rodrigo Andrade da Silva - 15/0147287", 1024, 600);
+    Game::instance = new Game("Rodrigo Andrade da Silva / 15/0147287", 1024, 600);
   }
   return *instance;
 }

@@ -29,7 +29,6 @@ void Camera::Update(float dt){
     if(focus != nullptr){
         pos = {focus->box.x - 512, focus->box.y - 300};
     } else {
-        cout<<dt<<endl;
         speed = {0, 0};
         Vec2 direcional = { 100*dt, 0};
 

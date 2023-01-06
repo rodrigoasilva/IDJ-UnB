@@ -50,7 +50,6 @@ void TileMap::Load(std::string file) {
         tileValue *= 10;
         tileValue += lineString.at(i) - '0';
       } else if (lineString.at(i) == ',') {
-        /* Storing it in the vector minus one. */
         TileMap::tileMatrix.push_back(tileValue - 1);
         tileValue = 0;
       } else {

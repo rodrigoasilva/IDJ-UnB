@@ -25,8 +25,6 @@ Sprite::Sprite(GameObject& associated,string file) : Component(associated),textu
   
   associated.box.w = Sprite::width;
   associated.box.h = Sprite::height;
-  printf("Sprite::Sprite(2) width = (box) %d - (Sprite) %d\n", (int)associated.box.w, width);
-  printf("Sprite::Sprite(2) height = (box) %d - (Sprite) %d\n", (int)associated.box.h, height);
 
 
 }
@@ -88,7 +86,7 @@ void Sprite::Render(int x ,  int y) {
   dstrect.h = clipRect.h;
 
 
-  SDL_RenderCopy(Game::GetInstance().GetRenderer(),texture, &clipRect , &dstrect);
+  SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture, &clipRect , &dstrect,associated.angleDeg,NULL,SDL_FLIP_NONE);
 }
 
 int Sprite::GetWidth() {
@@ -119,8 +117,25 @@ bool Sprite::Is(std::string type) {
 
 void Sprite::Render() {
 
-  //printf("Sprite::Render box: x = %f, y = %f, w = %d, h = %d\n", associated.box.x, associated.box.y, Sprite::clipRect.w, Sprite::clipRect.h);
   Render(associated.box.x - Camera::pos.x,associated.box.y - Camera::pos.y);
-  /* Rendering texture into Game's renderer. */
   
+}
+
+void Sprite::SetScale(float scaleX, float scaleY) {
+    auto &box = associated.box;
+    if(scaleX != 0){
+        scale.x = scaleX;
+        box.w = width * scaleX;
+        box.x = box.GetCenter().x - box.w/2;
+    }
+
+    if(scaleY != 0){
+        scale.y = scaleY;
+        box.h = height * scaleY;
+        box.y = box.GetCenter().y - box.h/2;
+    }
+}
+
+Vec2 Sprite::GetScale() {
+    return scale;
 }

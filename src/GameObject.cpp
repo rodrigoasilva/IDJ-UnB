@@ -11,7 +11,7 @@ using namespace std;
 #include <memory>
 #include<iterator>
 
-GameObject::GameObject() : box(Rect())  {
+GameObject::GameObject() : box(Rect()), started(false)  {
 
  isDead = false;
     
@@ -63,7 +63,6 @@ void GameObject::RemoveComponent(Component *cpt){
   bool naoEsta = true;
   while (posicao != components.size()) {
     
-    // PRINCIPALMENTE PARA UNIQUE_PTR
     if (components.at(posicao).get() == cpt) {
       components.erase(components.begin() + posicao);
       naoEsta = false;
@@ -88,4 +87,17 @@ Component* GameObject::GetComponent(string type){
   }
   return nullptr;    
     
+}
+
+void GameObject::Start(){
+
+
+
+    for (auto &compon : components) {
+        compon->Start();
+    } 
+
+ started = true;
+
+
 }

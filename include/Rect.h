@@ -25,7 +25,8 @@ public:
   Rect SumVec2(Vec2 v);
   Rect SubVec2(Vec2 v);
   Rect MulVec2(Vec2 v);
-
+  void SetPos(Vec2 pos);
+  Vec2 GetPos();
   Vec2 GetCenter();
 
   float DistRecs(Rect r);

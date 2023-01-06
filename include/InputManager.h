@@ -12,6 +12,7 @@ using namespace std;
 #define DOWN_ARROW_KEY    SDLK_DOWN
 #define ESCAPE_KEY        SDLK_ESCAPE
 #define LEFT_MOUSE_BUTTON SDL_BUTTON_LEFT
+#define RIGHT_MOUSE_BUTTON SDL_BUTTON_RIGHT
 #include <unordered_map>
 
  

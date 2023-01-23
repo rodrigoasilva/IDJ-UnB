@@ -1,0 +1,15 @@
+C:\Users\gomes\Desktop\idj6\bin\Debug\net6.0\idj6.exe
+C:\Users\gomes\Desktop\idj6\bin\Debug\net6.0\idj6.deps.json
+C:\Users\gomes\Desktop\idj6\bin\Debug\net6.0\idj6.runtimeconfig.json
+C:\Users\gomes\Desktop\idj6\bin\Debug\net6.0\idj6.dll
+C:\Users\gomes\Desktop\idj6\bin\Debug\net6.0\idj6.pdb
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.csproj.AssemblyReference.cache
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.AssemblyInfoInputs.cache
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.AssemblyInfo.cs
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.csproj.CoreCompileInputs.cache
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.dll
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\refint\idj6.dll
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.pdb
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\idj6.genruntimeconfig.cache
+C:\Users\gomes\Desktop\idj6\obj\Debug\net6.0\ref\idj6.dll

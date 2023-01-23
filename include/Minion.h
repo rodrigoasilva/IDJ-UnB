@@ -29,6 +29,7 @@ public:
     void Render();
     bool Is(string type);
     void Shoot(Vec2 target);
+    void NotifyCollision(GameObject& other);
 
 
 };

@@ -23,6 +23,7 @@ private:
   bool isDead;
   vector<unique_ptr<Component>> components;
  
+ 
 public:
   GameObject();
   ~GameObject();
@@ -37,6 +38,9 @@ public:
   Rect box;
   bool IsDead();
   double angleDeg;
+  void NotifyCollision(GameObject& other);
+  
+
 
  
 };

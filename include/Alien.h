@@ -10,25 +10,22 @@ using namespace std;
 #include <SDL2/SDL_ttf.h>
 #include "Component.h"
 #include "Vec2.h"
+#include "Timer.h"
 #include <queue>
 #include <memory>
 #include <vector>
+
 
 class Alien : public Component{
 private:
    Vec2 speed;
    int hp;
-   class Action{
-    public: 
-        
-        enum ActionType { MOVE, SHOOT };
-        ActionType type;
-        Action(ActionType type, float x,  float y);
-        Vec2 pos;
-   
-   };
-   queue<Action> taskQueue;
+   enum AlienState { MOVING, RESTING };
+   AlienState state;
+   Timer restTimer;
+   Vec2 destination;
    std::vector< std::weak_ptr<GameObject> > minionArray;
+   float timeOffset;
    
  
 public:
@@ -38,6 +35,8 @@ public:
    void Update(float dt);
    void Render();
    bool Is(string type);
+   void NotifyCollision(GameObject& other);
+   static int alienCount;
 
 };
 #endif

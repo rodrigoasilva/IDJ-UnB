@@ -54,6 +54,9 @@ void GameObject::RequestDelete()  {
 void GameObject::AddComponent(Component *cpt){
 
  components.emplace_back(cpt);
+ if(started){
+        cpt->Start();
+    }
 
 }
 
@@ -70,10 +73,7 @@ void GameObject::RemoveComponent(Component *cpt){
     }
   }
 
-  if (naoEsta) {
-    
-  }
-
+  
     
 }
 
@@ -101,3 +101,14 @@ void GameObject::Start(){
 
 
 }
+
+void GameObject::NotifyCollision(GameObject& other){
+
+  for(int i = 0; i < components.size(); i++){
+
+      components[i]->NotifyCollision(other);
+      
+    }
+
+}
+

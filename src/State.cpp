@@ -13,15 +13,19 @@ using namespace std;
 #include "Sound.h"
 #include "Alien.h"
 #include "Minion.h"
-#include "Sprite.h"
 #include "TileMap.h"
 #include "TileSet.h"
 #include "Rect.h"
 #include <stack>
+#include "PenguinBody.h"
+#include "Collider.h"
+#include "Collision.h"
+
+
 
 State::State()  : music(Music()),started(false){
 
- 
+ State::started = false;
   GameObject* bg = new GameObject();
   bg->box.x = 0;
   bg->box.y = 0;
@@ -46,10 +50,17 @@ State::State()  : music(Music()),started(false){
   go->box.SetPos(Vec2(512 - go->box.w/2, 300 - go->box.h/2));
   go->box.x = 512 - go->box.w/2;
   go->box.y = 300 - go->box.h/2;
-  
+  AddObject(go);
+  go = new GameObject();
+  go->AddComponent(new PenguinBody(*go));
+  go->box.x = 704;
+  go->box.y = 640;
+  Camera::Follow(go);
+
+
 
   AddObject(go);
- 
+
  
 
 
@@ -59,18 +70,20 @@ State::State()  : music(Music()),started(false){
 
 void State::LoadAssets() {
 
-	 music.Open("audio/stageState.ogg");
+	music.Open("audio/stageState.ogg");
     music.Play();
 
 }
 
 void State::Update(float dt){
   
-	int mouseX, mouseY;
+
+
+  int mouseX, mouseY;
 
   
 
-	SDL_GetMouseState(&mouseX, &mouseY);
+  SDL_GetMouseState(&mouseX, &mouseY);
   Camera::Update(dt);  
   State::quitRequested = InputManager::GetInstance().QuitRequested();
 
@@ -82,14 +95,41 @@ void State::Update(float dt){
   if(InputManager::GetInstance().MousePress(SDL_QUIT)) {
 				quitRequested = true;
 			} 
-
-
 	 
 		
   for (int i = (int)objectArray.size() - 1; i >= 0; i--) {
     State::objectArray.at(i)->Update(dt);
   }
  
+
+  for(int i = 0; i < objectArray.size(); i++) {
+        if (objectArray[i]->IsDead()) {
+            objectArray.erase(objectArray.begin() + i);
+        }
+    }
+
+
+   for (int i = 0; i < objectArray.size(); i++) {
+        for(int j = i+1; j < objectArray.size(); j++){
+            auto &objA = objectArray[i];
+            auto &objB = objectArray[j];
+
+            Collider *colliderA = (Collider*) objA->GetComponent("Collider");
+            Collider *colliderB = (Collider*) objB->GetComponent("Collider");
+            if(colliderA && colliderB){
+                auto boxA = colliderA->box;
+                auto boxB = colliderB->box;
+
+                auto angleOfA = (float)(objA->angleDeg);
+                auto angleOfB = (float)(objB->angleDeg);
+
+                if (Collision::IsColliding(boxA, boxB, angleOfA, angleOfB)) {
+                    objA->NotifyCollision(*objB);
+                    objB->NotifyCollision(*objA);
+                }
+            }
+        }
+    }
 
 }
 

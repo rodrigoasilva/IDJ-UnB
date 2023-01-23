@@ -25,10 +25,11 @@ void Camera::Unfollow(){
 }
 
 void Camera::Update(float dt){
-
+    
     if(focus != nullptr){
-        pos = {focus->box.x - 512, focus->box.y - 300};
+        pos = {focus->box.x - 512 + focus->box.w/2, focus->box.y -300 +focus->box.h/2};
     } else {
+        
         speed = {0, 0};
         Vec2 direcional = { 100*dt, 0};
 

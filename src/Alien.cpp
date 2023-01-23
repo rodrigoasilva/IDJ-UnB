@@ -11,23 +11,33 @@ using namespace std;
 #include "Camera.h"
 #include "Minion.h"
 #include "Game.h"
+#include "Bullet.h"
 #include <queue>
 #include <memory>
 #include <vector>
+#include <PenguinBody.h>
+#include "Collider.h"
+#include "Sound.h"
 
+
+int Alien::alienCount = 0;
 
 Alien::Alien(GameObject& associated, int nMinions) : Component(associated),speed({0, 0}), hp(30){
 
     associated.AddComponent(new Sprite(associated, "img/alien.png"));
+    associated.AddComponent(new Collider(associated));
     minionArray.resize((unsigned)(nMinions));
     nMinions = nMinions;
-    
+    alienCount++;
+    state = RESTING;
+    timeOffset = 1 + (rand()%11)/10;
+   
 }
 
 Alien::~Alien(){
 
     minionArray.clear();
-
+    alienCount--;
 }
 
 
@@ -35,6 +45,8 @@ void Alien::Start(){
 
 
     auto minionSize = minionArray.size();
+    //cout<<"Quantidade de minions"<<endl;
+    //cout<<minionSize<<endl;
     for(int i = 0; i <  minionSize; i++){
         auto *minionGO = new GameObject;
 
@@ -46,7 +58,7 @@ void Alien::Start(){
                                           setor));
 
          minionArray[i] = (Game::GetInstance().GetState().AddObject(minionGO));
-
+        restTimer = *new Timer;
 }
 
 
@@ -56,62 +68,87 @@ void Alien::Update(float dt){
 
  Rect box = Alien::associated.box;
   
-  /*if (InputManager::GetInstance().MousePress(LEFT_MOUSE_BUTTON)) {
-    Alien::taskQueue.push(Action(Action::SHOOT, mousePos.x, mousePos.y));
-  }*/
-  
    Vec2 mousePos = Vec2(InputManager::GetInstance().GetMouseX(),
                        InputManager::GetInstance().GetMouseY());
+
   
-  if(InputManager::GetInstance().MousePress(RIGHT_MOUSE_BUTTON)) {
-    Alien::taskQueue.push(Action(Action::MOVE,
-                                 mousePos.x,
-                                 mousePos.y));
-  }  
+  if (hp <=0) {
+    auto deathalien(new GameObject());
+    deathalien->AddComponent(new Sprite(*deathalien, "img/aliendeath.png", 4, 0.1, 0.4));
+    deathalien->box.x = associated.box.GetCenter().x - deathalien->box.w/2;
+    deathalien->box.y = associated.box.GetCenter().y - deathalien->box.h/2;
 
-  if(InputManager::GetInstance().MousePress(LEFT_MOUSE_BUTTON)) {
-    Alien::taskQueue.push(Action(Action::SHOOT,
-                                 mousePos.x,
-                                 mousePos.y));
-  }   
+    auto explosionSound(new Sound(*deathalien, "audio/boom.wav"));
+    deathalien->AddComponent(explosionSound);
+    explosionSound->Play();
 
-  if(!taskQueue.empty()){
-  if(taskQueue.front().type == Action::SHOOT){
-    Vec2 pos = Alien::taskQueue.front().pos;
-    float minionDS = minionArray[0].lock()->box.GetCenter().Dist(pos);
-    int nearestMinion = 0;
-
-    for (int i = 1; i < minionArray.size(); i++) {
-      if(minionArray[i].lock()->box.GetCenter().Dist(pos) < minionDS) {
-        nearestMinion = i;
-        minionDS = minionArray[i].lock()->box.GetCenter().Dist(pos);
-      }
-    }
-
-    Minion* m = static_cast<Minion*>(minionArray[nearestMinion].lock()->GetComponent("Minion"));
-    m->Shoot(pos+ Vec2(Camera::pos.x,Camera::pos.y));
-    taskQueue.pop();
-
-
+    Game::GetInstance().GetState().AddObject(deathalien);
+    associated.RequestDelete();
   }
+  else{
 
-  else if(taskQueue.front().type == Action::MOVE){ 
 
-    Vec2 deltaX = {500 * dt, 0};
-    Vec2 calculado = taskQueue.front().pos - Vec2(associated.box.x + (associated.box.w/2), associated.box.y + (associated.box.h/2)) + Vec2(Camera::pos.x,Camera::pos.y);
-    Vec2 real = deltaX.Rotate(calculado.InclX());
-    
+  
+
+  associated.angleDeg += -2;
+
+
+
+  PenguinBody *player = PenguinBody::player;
+        if(player) {
+            if (state == RESTING) {
+                restTimer.Update(dt);
+                if (restTimer.Get() > (3+timeOffset)) {
+                    
+                    state = MOVING;
+                    restTimer.Restart();
+                    timeOffset = 1 + (rand()%11)/10;
+                    destination = player->GetPlayerCenter();
+                    speed = Vec2(300, 0).Rotate((destination - associated.box.GetCenter()).InclX());
+                
+                }
+            } else if (state == MOVING) {
+                Vec2 deltaX = {300* dt, 0};
+                Vec2 calculado = destination - Vec2(associated.box.x + (associated.box.w/2), associated.box.y + (associated.box.h/2));
+                Vec2 real = deltaX.Rotate(calculado.InclX());
+
+                
+                if((calculado.Mag() < real.Mag())){
+                    
+                    associated.box += calculado;
+
+                    auto pos = player->GetPlayerCenter();
+                    float minionDS = minionArray[0].lock()->box.GetCenter().Dist(pos);
+                    int nearestMinion = 0;
+
+                    for (int i = 1; i < minionArray.size(); i++) {
+                      if(minionArray[i].lock()->box.GetCenter().Dist(pos) < minionDS) {
+                          nearestMinion = i;
+                          minionDS = minionArray[i].lock()->box.GetCenter().Dist(pos);
+                       }
+                   }
+
+      Minion* m = static_cast<Minion*>(minionArray[nearestMinion].lock()->GetComponent("Minion"));
+      m->Shoot(pos);
       
-    if(calculado.Mag() < real.Mag()){
-        //chegou em destination
-        associated.box += calculado;
-        taskQueue.pop();      
-    }
-    else{   
-        associated.box += real;
-    }
-              
-  }}
+                   
+                    
+
+                    state = RESTING;
+                    Alien::restTimer.Restart();
+                } else {
+                    //deslocando ate destination
+                    associated.box += real;
+                }
+
+            }
+        }
+    } 
+
+  
+  
+
+
 }
 
 
@@ -133,7 +170,16 @@ bool Alien::Is(string type){
 
 }
 
-Alien::Action::Action(ActionType type, float x, float y) {
-  Action::type = type;
-  pos = Vec2(x, y);
+
+
+void Alien::NotifyCollision(GameObject& other){
+ 
+ auto bullet = (Bullet*) other.GetComponent("Bullet");
+ if (bullet && !bullet->targetsPlayer) {
+        hp -= bullet->GetDamage();
+        cout<<hp<<endl;  
+ 
+    }
+
+
 }

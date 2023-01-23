@@ -6,7 +6,6 @@ using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
 #include "Minion.h"
-#include "Sprite.h"
 #include "Component.h"
 #include "GameObject.h"
 #include "Bullet.h"
@@ -16,6 +15,7 @@ using namespace std;
 #include <stdlib.h> 
 #include <vector>
 #include <time.h> 
+#include "Collider.h"
 
 Minion::Minion( GameObject& associated , std::weak_ptr< GameObject > alienCenter,  float  arcOffsetDeg ) : Component(associated), alienCenter(*alienCenter.lock()), arc(arcOffsetDeg){
 Sprite* sprite = new Sprite(associated, "img/minion.png");
@@ -27,6 +27,15 @@ associated.AddComponent(sprite);
 }
 
 void Minion::Update(float dt){
+
+
+
+   if((alienCenter.IsDead())){
+
+        
+
+        associated.RequestDelete();
+    }
     arc +=  M_PI/4* dt;
     Vec2 raioOrbita = Vec2(150, 30).Rotate(arc);
     Vec2 distOrigem = alienCenter.box.GetCenter();
@@ -63,8 +72,17 @@ void Minion::Shoot(Vec2 target){
 
     float angle = (target - associated.box.GetCenter()).InclXDeg();
   
-  go->AddComponent(new Bullet(*go,angle, 300, 5,1000, "img/minionbullet1.png"));
- 
+  Bullet* bullet = new Bullet(*go,angle, 300, 5,1000, "img/minionbullet2.png",3,0.33);
+  bullet->targetsPlayer = true;
+  go->AddComponent(bullet);
+
+  
   Game::GetInstance().GetState().AddObject(go);
     
 } 
+
+void Minion::NotifyCollision(GameObject& other){
+
+
+
+}

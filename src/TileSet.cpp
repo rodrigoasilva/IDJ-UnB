@@ -7,13 +7,10 @@ using namespace std;
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include "TileSet.h"
-#include "Sprite.h"
 
 
-TileSet::TileSet(
-                 int tileWidth,
-                 int tileHeight,
-                 string file):tileSet(*(new GameObject()), file), tileWidth(tileWidth), tileHeight(tileHeight){
+
+TileSet::TileSet(int tileWidth,int tileHeight,string file):tileSet(*(new GameObject()), file), tileWidth(tileWidth), tileHeight(tileHeight){
  
     tileSet.Open((file));
     if(tileSet.IsOpen()){

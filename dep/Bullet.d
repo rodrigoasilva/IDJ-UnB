@@ -26,7 +26,7 @@ bin/Bullet.o: src/Bullet.cpp include/SDL_include.h include/Bullet.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Sprite.h include/SDL_include.h \
- include/Vec2.h
+ include/Timer.h include/Vec2.h include/Collider.h
 include/SDL_include.h:
 include/Bullet.h:
 include/SDL2/SDL.h:
@@ -88,4 +88,6 @@ include/Rect.h:
 include/Vec2.h:
 include/Sprite.h:
 include/SDL_include.h:
+include/Timer.h:
 include/Vec2.h:
+include/Collider.h:

@@ -25,9 +25,11 @@ bin/Alien.o: src/Alien.cpp include/SDL_include.h include/Alien.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/Sprite.h include/SDL_include.h \
- include/InputManager.h include/Camera.h include/Minion.h include/Game.h \
- include/State.h include/Sprite.h include/Music.h include/Game.h
+ include/Rect.h include/Vec2.h include/Timer.h include/Sprite.h \
+ include/SDL_include.h include/InputManager.h include/Camera.h \
+ include/Minion.h include/Game.h include/State.h include/Sprite.h \
+ include/Music.h include/Game.h include/Bullet.h include/PenguinBody.h \
+ include/Collider.h include/Sound.h
 include/SDL_include.h:
 include/Alien.h:
 include/SDL2/SDL.h:
@@ -87,6 +89,7 @@ include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
+include/Timer.h:
 include/Sprite.h:
 include/SDL_include.h:
 include/InputManager.h:
@@ -97,3 +100,7 @@ include/State.h:
 include/Sprite.h:
 include/Music.h:
 include/Game.h:
+include/Bullet.h:
+include/PenguinBody.h:
+include/Collider.h:
+include/Sound.h:

@@ -26,8 +26,8 @@ bin/Resources.o: src/Resources.cpp include/Resources.h include/SDL2/SDL.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Game.h include/SDL_include.h \
  include/State.h include/Sprite.h include/Component.h \
- include/GameObject.h include/Rect.h include/Vec2.h include/Music.h \
- include/Game.h
+ include/GameObject.h include/Rect.h include/Vec2.h include/Timer.h \
+ include/Music.h include/Game.h
 include/Resources.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -90,5 +90,6 @@ include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
+include/Timer.h:
 include/Music.h:
 include/Game.h:

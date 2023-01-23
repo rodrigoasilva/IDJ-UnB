@@ -25,9 +25,10 @@ bin/Minion.o: src/Minion.cpp include/SDL_include.h include/Minion.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/Sprite.h include/SDL_include.h \
- include/Component.h include/GameObject.h include/Bullet.h include/Game.h \
- include/State.h include/Sprite.h include/Music.h include/Game.h
+ include/Rect.h include/Vec2.h include/Component.h include/GameObject.h \
+ include/Bullet.h include/Game.h include/SDL_include.h include/State.h \
+ include/Sprite.h include/Timer.h include/Music.h include/Game.h \
+ include/Collider.h
 include/SDL_include.h:
 include/Minion.h:
 include/SDL2/SDL.h:
@@ -87,13 +88,14 @@ include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/Sprite.h:
-include/SDL_include.h:
 include/Component.h:
 include/GameObject.h:
 include/Bullet.h:
 include/Game.h:
+include/SDL_include.h:
 include/State.h:
 include/Sprite.h:
+include/Timer.h:
 include/Music.h:
 include/Game.h:
+include/Collider.h:

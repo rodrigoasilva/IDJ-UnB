@@ -26,7 +26,7 @@ bin/Face.o: src/Face.cpp include/Face.h include/SDL2/SDL.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Sound.h include/Sprite.h \
- include/SDL_include.h
+ include/SDL_include.h include/Timer.h
 include/Face.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -88,3 +88,4 @@ include/Vec2.h:
 include/Sound.h:
 include/Sprite.h:
 include/SDL_include.h:
+include/Timer.h:

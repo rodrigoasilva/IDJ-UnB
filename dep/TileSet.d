@@ -25,7 +25,7 @@ bin/TileSet.o: src/TileSet.cpp include/SDL2/SDL.h include/SDL2/SDL_main.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
  include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/TileSet.h \
  include/GameObject.h include/Component.h include/Rect.h include/Vec2.h \
- include/Sprite.h include/SDL_include.h include/Sprite.h
+ include/Sprite.h include/SDL_include.h include/Timer.h
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
@@ -86,4 +86,4 @@ include/Rect.h:
 include/Vec2.h:
 include/Sprite.h:
 include/SDL_include.h:
-include/Sprite.h:
+include/Timer.h:

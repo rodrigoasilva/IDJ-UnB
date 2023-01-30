@@ -8,7 +8,6 @@ using namespace std;
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
-#include "Component.h"
 #include "GameObject.h"
 #include <queue>
 #include <memory>

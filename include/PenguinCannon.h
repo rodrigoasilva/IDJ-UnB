@@ -6,8 +6,6 @@
 using namespace std;
 #include "SDL_include.h"
 #include "Component.h"
-#include "GameObject.h"
-#include "PenguinBody.h"
 #include <vector>
 #include "Timer.h"
 

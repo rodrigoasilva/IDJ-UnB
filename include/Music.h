@@ -4,7 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include "SDL_include.h"
-#include "Game.h"
+
 
 
 
@@ -14,7 +14,7 @@ using namespace std;
 class Music
 {
 private:
-    Mix_Music* music;
+    shared_ptr<Mix_Music> music;
     
 public:
     Music();

@@ -5,8 +5,6 @@
 #include <ctime>
 using namespace std;
 #include "SDL_include.h"
-#include "Sprite.h"
-#include "Music.h"
 #include <vector>
 #include <memory>
 #include "GameObject.h"
@@ -15,23 +13,31 @@ using namespace std;
 
 
 class State {
-private:
+protected:
  
    bool started;
-   Music music;
+   bool popRequested;
    bool quitRequested;
-   void AddObject(int mouseX  , int mouseY );
+   void StartArray();
+   virtual void UpdateArray(float dt);
+   virtual void RenderArray();
+   bool debug = false;
    std::vector<std::shared_ptr<GameObject>> objectArray;
 public:
     State();
-    ~State();
-    void Start();
+    virtual ~State();
+    virtual void Start() = 0;
+    virtual void Pause() = 0;
+    virtual void Resume() = 0;
+    bool PopRequested();
     std::weak_ptr< GameObject > AddObject(GameObject* go);
     std::weak_ptr< GameObject > GetObjectPtr(GameObject* go);
     bool QuitRequested();
-    void LoadAssets();
-    void Update(float dt);
-    void Render();
+    virtual void LoadAssets() = 0;
+    virtual void Update(float dt) = 0;
+    virtual void Render() = 0;
+    bool isDebug() const;
+    void setDebug(bool debug);
  
 };
 #endif

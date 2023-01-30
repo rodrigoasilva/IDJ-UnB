@@ -6,9 +6,7 @@
 using namespace std;
 #include "SDL_include.h"
 #include "Component.h"
-#include "Rect.h"
-#include "Vec2.h"
-#include <vector>
+
 
 
 class Collider: public Component {

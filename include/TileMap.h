@@ -10,7 +10,6 @@ using namespace std;
 #include <SDL2/SDL_ttf.h>
 #include <vector>
 #include "TileSet.h"
-#include "Component.h"
 #include "GameObject.h"
 
 

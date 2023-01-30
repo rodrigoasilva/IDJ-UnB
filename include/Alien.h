@@ -9,7 +9,6 @@ using namespace std;
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include "Component.h"
-#include "Vec2.h"
 #include "Timer.h"
 #include <queue>
 #include <memory>

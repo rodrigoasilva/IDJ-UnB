@@ -6,12 +6,11 @@
 using namespace std;
 #include "SDL_include.h"
 #include "Component.h"
-#include "Vec2.h"
 #include "Timer.h"
  
 class Sprite : public Component{
 private:
-    SDL_Texture* texture;
+    shared_ptr<SDL_Texture> texture;
     int width;
     int height;
     SDL_Rect clipRect;

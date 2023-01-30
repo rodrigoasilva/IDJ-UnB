@@ -22,13 +22,12 @@ bin/Sprite.o: src/Sprite.cpp include/SDL_include.h include/SDL2/SDL.h \
  include/SDL2/SDL_power.h include/SDL2/SDL_render.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
- include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h include/Game.h \
- include/SDL_include.h include/State.h include/Sprite.h \
- include/Component.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/Timer.h include/Music.h \
- include/Game.h include/State.h include/Sprite.h include/Resources.h \
- include/Camera.h include/Timer.h
+ include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h include/Resources.h \
+ include/SDL_include.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
+ include/SDL2/SDL_mixer.h include/SDL2/SDL_ttf.h include/Camera.h \
+ include/GameObject.h include/Component.h include/Rect.h include/Vec2.h \
+ include/Bullet.h include/Sprite.h include/Timer.h include/Game.h \
+ include/State.h
 include/SDL_include.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -79,23 +78,19 @@ include/SDL2/SDL_timer.h:
 include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
-include/Game.h:
+include/Resources.h:
 include/SDL_include.h:
-include/State.h:
-include/Sprite.h:
-include/Component.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
+include/Camera.h:
 include/GameObject.h:
+include/Component.h:
 include/Rect.h:
 include/Vec2.h:
+include/Bullet.h:
+include/Sprite.h:
 include/Timer.h:
-include/Music.h:
 include/Game.h:
 include/State.h:
-include/Sprite.h:
-include/Resources.h:
-include/Camera.h:
-include/Timer.h:

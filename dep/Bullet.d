@@ -1,5 +1,6 @@
-bin/Bullet.o: src/Bullet.cpp include/SDL_include.h include/Bullet.h \
- include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
+bin/Bullet.o: src/Bullet.cpp include/SDL_include.h include/Sprite.h \
+ include/SDL_include.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
+ include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
  include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
@@ -23,12 +24,14 @@ bin/Bullet.o: src/Bullet.cpp include/SDL_include.h include/Bullet.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
- include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
- include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/Sprite.h include/SDL_include.h \
- include/Timer.h include/Vec2.h include/Collider.h
+ include/SDL2/SDL_mixer.h include/Component.h include/SDL2/SDL.h \
+ include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
+ include/Vec2.h include/Timer.h include/Collider.h include/Alien.h \
+ include/Minion.h include/PenguinBody.h include/Bullet.h
 include/SDL_include.h:
-include/Bullet.h:
+include/Sprite.h:
+include/SDL_include.h:
+include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
@@ -78,16 +81,16 @@ include/SDL2/SDL_timer.h:
 include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
-include/SDL2/SDL_image.h:
-include/SDL2/SDL.h:
 include/SDL2/SDL_mixer.h:
-include/SDL2/SDL_ttf.h:
 include/Component.h:
+include/SDL2/SDL.h:
+include/SDL2/SDL_ttf.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/Sprite.h:
-include/SDL_include.h:
 include/Timer.h:
-include/Vec2.h:
 include/Collider.h:
+include/Alien.h:
+include/Minion.h:
+include/PenguinBody.h:
+include/Bullet.h:

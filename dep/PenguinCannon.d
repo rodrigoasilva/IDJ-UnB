@@ -1,5 +1,5 @@
 bin/PenguinCannon.o: src/PenguinCannon.cpp include/SDL_include.h \
- include/PenguinCannon.h include/SDL_include.h include/SDL2/SDL_image.h \
+ include/Sprite.h include/SDL_include.h include/SDL2/SDL_image.h \
  include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
@@ -26,12 +26,11 @@ bin/PenguinCannon.o: src/PenguinCannon.cpp include/SDL_include.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_mixer.h include/Component.h include/SDL2/SDL.h \
  include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/PenguinBody.h include/Timer.h \
- include/GameObject.h include/InputManager.h include/Bullet.h \
- include/Game.h include/State.h include/Sprite.h include/Music.h \
- include/Game.h include/Vec2.h include/Collider.h include/Timer.h
+ include/Vec2.h include/Timer.h include/InputManager.h include/Game.h \
+ include/State.h include/Bullet.h include/Collider.h include/Timer.h \
+ include/Sound.h include/PenguinCannon.h
 include/SDL_include.h:
-include/PenguinCannon.h:
+include/Sprite.h:
 include/SDL_include.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
@@ -90,16 +89,12 @@ include/SDL2/SDL_ttf.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/PenguinBody.h:
 include/Timer.h:
-include/GameObject.h:
 include/InputManager.h:
-include/Bullet.h:
 include/Game.h:
 include/State.h:
-include/Sprite.h:
-include/Music.h:
-include/Game.h:
-include/Vec2.h:
+include/Bullet.h:
 include/Collider.h:
 include/Timer.h:
+include/Sound.h:
+include/PenguinCannon.h:

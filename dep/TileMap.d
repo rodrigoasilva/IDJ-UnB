@@ -24,9 +24,9 @@ bin/TileMap.o: src/TileMap.cpp include/TileMap.h include/SDL2/SDL.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
- include/SDL2/SDL_ttf.h include/TileSet.h include/GameObject.h \
- include/Component.h include/Rect.h include/Vec2.h include/Sprite.h \
- include/SDL_include.h include/Timer.h include/Camera.h
+ include/SDL2/SDL_ttf.h include/TileSet.h include/Sprite.h \
+ include/SDL_include.h include/Component.h include/GameObject.h \
+ include/Rect.h include/Vec2.h include/Timer.h include/Camera.h
 include/TileMap.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -82,11 +82,11 @@ include/SDL2/SDL.h:
 include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
 include/TileSet.h:
-include/GameObject.h:
-include/Component.h:
-include/Rect.h:
-include/Vec2.h:
 include/Sprite.h:
 include/SDL_include.h:
+include/Component.h:
+include/GameObject.h:
+include/Rect.h:
+include/Vec2.h:
 include/Timer.h:
 include/Camera.h:

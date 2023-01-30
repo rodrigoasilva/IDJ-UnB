@@ -6,28 +6,27 @@ bin/Music.o: src/Music.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_audio.h include/SDL2/SDL_endian.h \
  include/SDL2/SDL_mutex.h include/SDL2/SDL_thread.h \
  include/SDL2/SDL_atomic.h include/SDL2/SDL_version.h include/State.h \
- include/Sprite.h include/Component.h include/SDL2/SDL.h \
- include/SDL2/SDL_main.h include/SDL2/SDL_assert.h \
- include/SDL2/SDL_clipboard.h include/SDL2/SDL_cpuinfo.h \
- include/SDL2/SDL_events.h include/SDL2/SDL_video.h \
- include/SDL2/SDL_pixels.h include/SDL2/SDL_rect.h \
- include/SDL2/SDL_surface.h include/SDL2/SDL_blendmode.h \
- include/SDL2/SDL_keyboard.h include/SDL2/SDL_keycode.h \
- include/SDL2/SDL_scancode.h include/SDL2/SDL_mouse.h \
- include/SDL2/SDL_joystick.h include/SDL2/SDL_gamecontroller.h \
- include/SDL2/SDL_sensor.h include/SDL2/SDL_quit.h \
- include/SDL2/SDL_gesture.h include/SDL2/SDL_touch.h \
- include/SDL2/SDL_filesystem.h include/SDL2/SDL_haptic.h \
- include/SDL2/SDL_hidapi.h include/SDL2/SDL_hints.h \
- include/SDL2/SDL_loadso.h include/SDL2/SDL_log.h \
- include/SDL2/SDL_messagebox.h include/SDL2/SDL_metal.h \
- include/SDL2/SDL_power.h include/SDL2/SDL_render.h \
- include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
- include/SDL2/SDL_timer.h include/SDL2/SDL_locale.h \
- include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/Timer.h include/Music.h include/Game.h \
- include/State.h include/Sprite.h include/Music.h include/Resources.h
+ include/GameObject.h include/SDL2/SDL.h include/SDL2/SDL_main.h \
+ include/SDL2/SDL_assert.h include/SDL2/SDL_clipboard.h \
+ include/SDL2/SDL_cpuinfo.h include/SDL2/SDL_events.h \
+ include/SDL2/SDL_video.h include/SDL2/SDL_pixels.h \
+ include/SDL2/SDL_rect.h include/SDL2/SDL_surface.h \
+ include/SDL2/SDL_blendmode.h include/SDL2/SDL_keyboard.h \
+ include/SDL2/SDL_keycode.h include/SDL2/SDL_scancode.h \
+ include/SDL2/SDL_mouse.h include/SDL2/SDL_joystick.h \
+ include/SDL2/SDL_gamecontroller.h include/SDL2/SDL_sensor.h \
+ include/SDL2/SDL_quit.h include/SDL2/SDL_gesture.h \
+ include/SDL2/SDL_touch.h include/SDL2/SDL_filesystem.h \
+ include/SDL2/SDL_haptic.h include/SDL2/SDL_hidapi.h \
+ include/SDL2/SDL_hints.h include/SDL2/SDL_loadso.h \
+ include/SDL2/SDL_log.h include/SDL2/SDL_messagebox.h \
+ include/SDL2/SDL_metal.h include/SDL2/SDL_power.h \
+ include/SDL2/SDL_render.h include/SDL2/SDL_shape.h \
+ include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
+ include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
+ include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_ttf.h \
+ include/Component.h include/Rect.h include/Vec2.h include/Resources.h \
+ include/Music.h
 include/SDL_include.h:
 include/Game.h:
 include/SDL_include.h:
@@ -46,8 +45,7 @@ include/SDL2/SDL_thread.h:
 include/SDL2/SDL_atomic.h:
 include/SDL2/SDL_version.h:
 include/State.h:
-include/Sprite.h:
-include/Component.h:
+include/GameObject.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_assert.h:
@@ -87,13 +85,8 @@ include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_ttf.h:
-include/GameObject.h:
+include/Component.h:
 include/Rect.h:
 include/Vec2.h:
-include/Timer.h:
-include/Music.h:
-include/Game.h:
-include/State.h:
-include/Sprite.h:
-include/Music.h:
 include/Resources.h:
+include/Music.h:

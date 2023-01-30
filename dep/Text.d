@@ -1,5 +1,5 @@
-bin/Minion.o: src/Minion.cpp include/SDL_include.h include/Sprite.h \
- include/SDL_include.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
+bin/Text.o: src/Text.cpp include/Game.h include/SDL_include.h \
+ include/State.h include/GameObject.h include/SDL2/SDL.h \
  include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
@@ -24,14 +24,13 @@ bin/Minion.o: src/Minion.cpp include/SDL_include.h include/Sprite.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
- include/SDL2/SDL_mixer.h include/Component.h include/SDL2/SDL.h \
- include/SDL2/SDL_ttf.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/Timer.h include/Game.h include/State.h \
- include/Collider.h include/Bullet.h include/Sound.h include/Minion.h
+ include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
+ include/SDL2/SDL_ttf.h include/Component.h include/Rect.h include/Vec2.h \
+ include/Camera.h include/Resources.h include/Text.h
+include/Game.h:
 include/SDL_include.h:
-include/Sprite.h:
-include/SDL_include.h:
-include/SDL2/SDL_image.h:
+include/State.h:
+include/GameObject.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
@@ -81,17 +80,13 @@ include/SDL2/SDL_timer.h:
 include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
-include/SDL2/SDL_mixer.h:
-include/Component.h:
+include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
-include/GameObject.h:
+include/Component.h:
 include/Rect.h:
 include/Vec2.h:
-include/Timer.h:
-include/Game.h:
-include/State.h:
-include/Collider.h:
-include/Bullet.h:
-include/Sound.h:
-include/Minion.h:
+include/Camera.h:
+include/Resources.h:
+include/Text.h:

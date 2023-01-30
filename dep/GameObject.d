@@ -25,7 +25,7 @@ bin/GameObject.o: src/GameObject.cpp include/SDL_include.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_mixer.h include/GameObject.h \
  include/SDL2/SDL.h include/SDL2/SDL_ttf.h include/Component.h \
- include/GameObject.h include/Rect.h include/Vec2.h include/Component.h
+ include/GameObject.h include/Rect.h include/Vec2.h
 include/SDL_include.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
@@ -85,4 +85,3 @@ include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/Component.h:

@@ -1,4 +1,4 @@
-bin/InputManager.o: src/InputManager.cpp include/InputManager.h \
+bin/InputManager.o: src/InputManager.cpp include/Camera.h \
  include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
@@ -24,8 +24,9 @@ bin/InputManager.o: src/InputManager.cpp include/InputManager.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
- include/SDL2/SDL_ttf.h
-include/InputManager.h:
+ include/SDL2/SDL_ttf.h include/GameObject.h include/Component.h \
+ include/Rect.h include/Vec2.h include/InputManager.h
+include/Camera.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
 include/SDL2/SDL_stdinc.h:
@@ -79,3 +80,8 @@ include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_ttf.h:
+include/GameObject.h:
+include/Component.h:
+include/Rect.h:
+include/Vec2.h:
+include/InputManager.h:

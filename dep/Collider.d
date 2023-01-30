@@ -24,10 +24,9 @@ bin/Collider.o: src/Collider.cpp include/SDL_include.h include/Game.h \
  include/SDL2/SDL_shape.h include/SDL2/SDL_system.h \
  include/SDL2/SDL_timer.h include/SDL2/SDL_version.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
- include/SDL2/SDL_mixer.h include/State.h include/Sprite.h \
- include/Component.h include/SDL2/SDL.h include/SDL2/SDL_ttf.h \
- include/GameObject.h include/Rect.h include/Vec2.h include/Timer.h \
- include/Music.h include/Game.h include/Camera.h include/InputManager.h \
+ include/SDL2/SDL_mixer.h include/State.h include/GameObject.h \
+ include/SDL2/SDL.h include/SDL2/SDL_ttf.h include/Component.h \
+ include/Rect.h include/Vec2.h include/Camera.h include/InputManager.h \
  include/Collider.h
 include/SDL_include.h:
 include/Game.h:
@@ -84,16 +83,12 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_mixer.h:
 include/State.h:
-include/Sprite.h:
-include/Component.h:
+include/GameObject.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_ttf.h:
-include/GameObject.h:
+include/Component.h:
 include/Rect.h:
 include/Vec2.h:
-include/Timer.h:
-include/Music.h:
-include/Game.h:
 include/Camera.h:
 include/InputManager.h:
 include/Collider.h:

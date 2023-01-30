@@ -25,7 +25,7 @@ bin/Sound.o: src/Sound.cpp include/Sound.h include/SDL2/SDL.h \
  include/SDL2/SDL_locale.h include/SDL2/SDL_misc.h \
  include/SDL2/SDL_image.h include/SDL2/SDL.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_ttf.h include/Component.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/GameObject.h include/Component.h
+ include/Rect.h include/Vec2.h include/Resources.h include/SDL_include.h
 include/Sound.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -84,5 +84,5 @@ include/Component.h:
 include/GameObject.h:
 include/Rect.h:
 include/Vec2.h:
-include/GameObject.h:
-include/Component.h:
+include/Resources.h:
+include/SDL_include.h:

@@ -50,7 +50,6 @@ void TileMap::Load(std::string file) {
         tileValue *= 10;
         tileValue += lineString.at(i) - '0';
       } else if (lineString.at(i) == ',') {
-        /* Storing it in the vector minus one. */
         TileMap::tileMatrix.push_back(tileValue - 1);
         tileValue = 0;
       } else {
@@ -107,8 +106,8 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY) {
 
    for (int i = 0; i < mapWidth; i++){
         for (int j = 0; j < mapHeight; j++){
-            auto x = (int)(i * tileSet->GetTileWidth() - cameraX -  0.9* Camera::pos.x * layer);
-            auto y = (int)(j * tileSet->GetTileHeight() - cameraY - 0.9* Camera::pos.y * layer);
+            auto x = (int)(i * tileSet->GetTileWidth() - cameraX -  0.5* Camera::pos.x * layer);
+            auto y = (int)(j * tileSet->GetTileHeight() - cameraY - 0.5* Camera::pos.y * layer);
 
             tileSet->RenderTile((unsigned)At(i, j, layer), x, y);
         }

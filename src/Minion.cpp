@@ -5,17 +5,12 @@
 using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
+#include <Sprite.h>
+#include <Game.h>
+#include <Collider.h>
+#include <Bullet.h>
+#include <Sound.h>
 #include "Minion.h"
-#include "Component.h"
-#include "GameObject.h"
-#include "Bullet.h"
-#include "Game.h"
-#include <queue>
-#include <memory>
-#include <stdlib.h> 
-#include <vector>
-#include <time.h> 
-#include "Collider.h"
 
 Minion::Minion( GameObject& associated , std::weak_ptr< GameObject > alienCenter,  float  arcOffsetDeg ) : Component(associated), alienCenter(*alienCenter.lock()), arc(arcOffsetDeg){
 Sprite* sprite = new Sprite(associated, "img/minion.png");
@@ -77,7 +72,7 @@ void Minion::Shoot(Vec2 target){
   go->AddComponent(bullet);
 
   
-  Game::GetInstance().GetState().AddObject(go);
+  Game::GetInstance().GetCurrentState().AddObject(go);
     
 } 
 

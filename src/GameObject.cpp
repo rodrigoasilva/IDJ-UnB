@@ -6,13 +6,10 @@ using namespace std;
 #define INCLUDE_SDL_MIXER
 #include "SDL_include.h"
 #include "GameObject.h"
-#include <vector>
-#include "Component.h" 
-#include <memory>
-#include<iterator>
+
 
 GameObject::GameObject() : box(Rect()), started(false)  {
-
+  angleDeg=0;
  isDead = false;
     
 }
@@ -111,4 +108,3 @@ void GameObject::NotifyCollision(GameObject& other){
     }
 
 }
-

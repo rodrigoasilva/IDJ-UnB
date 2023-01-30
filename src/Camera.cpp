@@ -5,10 +5,9 @@ using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
 #include "SDL_include.h"
-#include "Game.h"
-#include "InputManager.h"
+#include <Game.h>
+#include <InputManager.h>
 #include "Camera.h"
-#include "Vec2.h"
 
 Vec2 Camera::pos = *new Vec2();
 Vec2 Camera::speed = *new Vec2();

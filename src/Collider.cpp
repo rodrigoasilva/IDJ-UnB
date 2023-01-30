@@ -9,9 +9,6 @@ using namespace std;
 #include <Camera.h>
 #include <InputManager.h>
 #include "Collider.h"
-#include <queue>
-#include <memory>
-#include <vector>
 
 
 Collider::Collider(GameObject& associated , Vec2  scale , Vec2  offset ) : Component(associated), scale(scale), offset(offset){
@@ -87,4 +84,3 @@ void Collider::SetOffset(Vec2 offset){
     this->offset = offset;
 
   }
-

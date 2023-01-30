@@ -4,11 +4,10 @@
 using namespace std;
 #include "SDL_include.h"
 #define INCLUDE_SDL_MIXER
-#include "Game.h"
-#include "State.h"
-#include "Sprite.h"
-#include "Music.h"
-#include "Resources.h"
+#include <utility>
+#include <Game.h>
+#include <Resources.h>
+#include <Music.h>
 
 Music::Music() : music(nullptr){
 
@@ -31,13 +30,12 @@ void Music::Play( int times) {
 
      
      
-      if (music != nullptr)
-        Mix_PlayMusic(music, times);
+    if (music != nullptr)
+        Mix_PlayMusic(music.get(), times);
     else {
         cout << "No music loaded: " << SDL_GetError() << endl;
         exit(1);
     }
-
 }
 
 void Music::Stop(int msToStop) {
@@ -48,12 +46,8 @@ void Music::Stop(int msToStop) {
 
 void Music::Open(string file) {
 
-music = Mix_LoadMUS(file.c_str());
- if (Music::music == nullptr) {
-    SDL_Log("Unable to load music Mix_LoadMUS: %s", SDL_GetError());
-    exit(EXIT_FAILURE);
-  }
-  Music::music = Resources::GetMusic(file);
+
+ music = Resources::GetMusic(move(file));
 }
 
 bool Music::IsOpen(){

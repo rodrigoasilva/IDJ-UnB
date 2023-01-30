@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-TileSet::TileSet(int tileWidth,int tileHeight,string file):tileSet(*(new GameObject()), file), tileWidth(tileWidth), tileHeight(tileHeight){
+TileSet::TileSet(int tileWidth,int tileHeight,string file):tileSet(*(new GameObject()),file), tileWidth(tileWidth), tileHeight(tileHeight){
  
     tileSet.Open((file));
     if(tileSet.IsOpen()){

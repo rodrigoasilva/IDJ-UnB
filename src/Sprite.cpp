@@ -5,32 +5,39 @@ using namespace std;
 
 #define INCLUDE_SDL
 #include "SDL_include.h"
+#include <Resources.h>
+#include <Camera.h>
 
+#include <utility>
+#include <Bullet.h>
+#include <Sprite.h>
 #include "Game.h"
-#include "State.h"
-#include "Sprite.h"
-#include "Resources.h"
-#include "Camera.h"
-#include "Timer.h"
 
 
-Sprite::Sprite(GameObject& associated) : Component(associated),texture(nullptr),frameCount(0),frameTime(0),timeElapsed(0),currentFrame(0),scale(1, 1),selfDestructCount(*new Timer),secondsToSelfDestruct(0){
+Sprite::Sprite(GameObject& associated) : Component(associated),texture(nullptr){
 
 
      width = 0;
      height = 0;
+     frameCount = 0;
+     frameTime = 0;
+     timeElapsed =0;
+     currentFrame =0;
+     secondsToSelfDestruct =0;
+     scale = Vec2 (1,1);
+
  
 
 }
 
-Sprite::Sprite(GameObject& associated,string file,int frameCount, float frameTime, float secondsToSelfDestruct) : Component(associated),texture(nullptr),frameCount(frameCount),frameTime(frameTime),scale(1, 1),secondsToSelfDestruct(secondsToSelfDestruct),selfDestructCount(*new Timer){
-  
+Sprite::Sprite(GameObject& associated,string file,int frameCount, float frameTime, float secondsToSelfDestruct) : Sprite(associated){
+  this->frameCount = frameCount;
+  this->frameTime = frameTime;
+  this->secondsToSelfDestruct = secondsToSelfDestruct;
   Open(file);
   
   associated.box.w = Sprite::width/frameCount;
   associated.box.h = Sprite::height;
-  //printf("Sprite::Sprite(2) width = (box) %d - (Sprite) %d\n", (int)associated.box.w, width);
-  //printf("Sprite::Sprite(2) height = (box) %d - (Sprite) %d\n", (int)associated.box.h, height);
 
 
 }
@@ -43,9 +50,10 @@ Sprite::~Sprite() {
 void Sprite::Open(string file) {
 
   
-  Sprite::texture = Resources::GetImage(file);
+ texture = Resources::GetImage(move(file));
+
   /* Loads texture. */
-SDL_QueryTexture(Sprite::texture,nullptr,nullptr,&width,&height);
+SDL_QueryTexture(texture.get(),nullptr,nullptr,&width,&height);
 
   /* Clips texture. */
   SetClip(0, 0, Sprite::width/frameCount, Sprite::height);
@@ -72,7 +80,7 @@ void Sprite::Render(int x ,  int y) {
   dstrect.w = clipRect.w;
   dstrect.h = clipRect.h;
 
-  SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture, &clipRect , &dstrect,associated.angleDeg,NULL,SDL_FLIP_NONE);
+  SDL_RenderCopyEx(Game::GetInstance().GetRenderer(),texture.get(), &clipRect , &dstrect,associated.angleDeg,nullptr,SDL_FLIP_NONE);
 }
 
 
@@ -117,7 +125,7 @@ bool Sprite::Is(std::string type) {
 
 void Sprite::Render() {
 
-Render(associated.box.x - Camera::pos.x,associated.box.y - Camera::pos.y);
+  Render(associated.box.x - Camera::pos.x,associated.box.y - Camera::pos.y);
   
 }
 

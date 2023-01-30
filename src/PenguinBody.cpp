@@ -5,15 +5,15 @@
 using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
+#include <Sprite.h>
+#include <PenguinCannon.h>
+#include <Game.h>
+#include <InputManager.h>
+#include <Collider.h>
+#include <Bullet.h>
+#include <Camera.h>
+#include <Sound.h>
 #include "PenguinBody.h"
-#include "Sprite.h"
-#include "PenguinCannon.h"
-#include "Game.h"
-#include "InputManager.h"
-#include "Collider.h"
-#include "Camera.h"
-#include "Bullet.h"
-#include "Sound.h"
 
 PenguinBody* PenguinBody::player;
 
@@ -37,9 +37,9 @@ player = nullptr;
 void  PenguinBody::Start(){
 
     auto *pcannonGO = new GameObject;
-    pcannonGO->AddComponent(new PenguinCannon(*pcannonGO,Game::GetInstance().GetState().GetObjectPtr(&associated)));
+    pcannonGO->AddComponent(new PenguinCannon(*pcannonGO,Game::GetInstance().GetCurrentState().GetObjectPtr(&associated)));
 
-    pcannon = Game::GetInstance().GetState().AddObject(pcannonGO);
+    pcannon = Game::GetInstance().GetCurrentState().AddObject(pcannonGO);
 
 
 
@@ -65,7 +65,7 @@ void  PenguinBody::Update(float dt){
     auto explosionSound(new Sound(*penguindeath, "audio/boom.wav"));
     penguindeath->AddComponent(explosionSound);
     explosionSound->Play();
-    Game::GetInstance().GetState().AddObject(penguindeath);
+    Game::GetInstance().GetCurrentState().AddObject(penguindeath);
     
   }
 

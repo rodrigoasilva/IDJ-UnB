@@ -29,7 +29,6 @@ void Face::Damage(int damage){
     if (sprite != nullptr) {
       Face::associated.RemoveComponent(sprite);
     }
-    printf("Damage\n");
    
       
   
@@ -40,7 +39,6 @@ void Face::Damage(int damage){
 void Face::Update(float dt){
 
     if (hitpoints <= 0) {
-    printf("Update\n");
     if (!(static_cast<Sound*>(associated.GetComponent("Sound"))->GetIsPlaying())) {
     if (!(static_cast<Sound*>(associated.GetComponent("Sound"))->
                                   GetIsPlaying())) {

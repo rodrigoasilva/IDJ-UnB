@@ -7,15 +7,12 @@ using namespace std;
 #define INCLUDE_SDL_MIXER
 #include "Alien.h"
 #include "Sprite.h"
-#include "InputManager.h"
 #include "Camera.h"
+#include "InputManager.h"
 #include "Minion.h"
 #include "Game.h"
 #include "Bullet.h"
-#include <queue>
-#include <memory>
-#include <vector>
-#include <PenguinBody.h>
+#include "PenguinBody.h"
 #include "Collider.h"
 #include "Sound.h"
 
@@ -45,8 +42,6 @@ void Alien::Start(){
 
 
     auto minionSize = minionArray.size();
-    //cout<<"Quantidade de minions"<<endl;
-    //cout<<minionSize<<endl;
     for(int i = 0; i <  minionSize; i++){
         auto *minionGO = new GameObject;
 
@@ -54,10 +49,10 @@ void Alien::Start(){
          auto setor = (float)( (M_PI*i*(360.0/(float)minionSize))/180.0f);
 
         minionGO->AddComponent(new Minion(*minionGO,
-                                          Game::GetInstance().GetState().GetObjectPtr(&associated),
+                                          Game::GetInstance().GetCurrentState().GetObjectPtr(&associated),
                                           setor));
 
-         minionArray[i] = (Game::GetInstance().GetState().AddObject(minionGO));
+         minionArray[i] = (Game::GetInstance().GetCurrentState().AddObject(minionGO));
         restTimer = *new Timer;
 }
 
@@ -82,7 +77,7 @@ void Alien::Update(float dt){
     deathalien->AddComponent(explosionSound);
     explosionSound->Play();
 
-    Game::GetInstance().GetState().AddObject(deathalien);
+    Game::GetInstance().GetCurrentState().AddObject(deathalien);
     associated.RequestDelete();
   }
   else{
@@ -119,6 +114,7 @@ void Alien::Update(float dt){
 
                     auto pos = player->GetPlayerCenter();
                     float minionDS = minionArray[0].lock()->box.GetCenter().Dist(pos);
+
                     int nearestMinion = 0;
 
                     for (int i = 1; i < minionArray.size(); i++) {
@@ -137,7 +133,6 @@ void Alien::Update(float dt){
                     state = RESTING;
                     Alien::restTimer.Restart();
                 } else {
-                    //deslocando ate destination
                     associated.box += real;
                 }
 
@@ -176,9 +171,7 @@ void Alien::NotifyCollision(GameObject& other){
  
  auto bullet = (Bullet*) other.GetComponent("Bullet");
  if (bullet && !bullet->targetsPlayer) {
-        hp -= bullet->GetDamage();
-        cout<<hp<<endl;  
- 
+        hp -= bullet->GetDamage(); 
     }
 
 

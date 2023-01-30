@@ -5,13 +5,12 @@
 using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
+#include <Sprite.h>
+#include <Collider.h>
+#include <Alien.h>
+#include <Minion.h>
+#include <PenguinBody.h>
 #include "Bullet.h"
-#include "Sprite.h"
-#include "Vec2.h"
-#include <queue>
-#include <memory>
-#include <vector>
-#include "Collider.h"
 
 Bullet::Bullet( GameObject& associated, float angle, float speed, int damage , float maxDistance,string sprite , int frameCount ,float frameTime) : Component(associated),damage(damage){
 
@@ -65,4 +64,3 @@ if((other.GetComponent("Alien") && !targetsPlayer) || (other.GetComponent("Pengu
     }
 
 }
-

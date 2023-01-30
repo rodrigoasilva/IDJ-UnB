@@ -5,8 +5,8 @@ using namespace std;
 #define INCLUDE_SDL_IMAGE
 #define INCLUDE_SDL_MIXER
 #include "Sound.h"
-#include "GameObject.h"
-#include "Component.h"
+#include "Resources.h"
+
 
 class GameObject;
 
@@ -25,12 +25,11 @@ Open(file.c_str());
 
 void Sound::Play(int times){
 
-    channel = Mix_PlayChannel( -1 ,  chunk, times-1);
-    if (channel == -1) {
-    SDL_Log("Unable to play sound Mix_PlayChannel: %s", SDL_GetError());
-    exit(EXIT_FAILURE);
-  }
-
+     channel = Mix_PlayChannel(-1, chunk.get(), times - 1);
+    if(channel == -1){
+        cout << "Unable to Mix_PlayChannel: " << SDL_GetError() << endl;
+        exit(1);
+    }
 }
 
 void Sound::Stop(){
@@ -47,18 +46,13 @@ void Sound::Stop(){
 
 void Sound::Open(string file) {
     
-    chunk = Mix_LoadWAV(file.c_str());
-    if(chunk==nullptr){
-
-           SDL_Log("Unable to open sound Mix_LoadWAV: %s", SDL_GetError());
-          exit(EXIT_FAILURE);
-    }
+    chunk = Resources::GetSound(move(file));
 }
 
 Sound::~Sound(){
 
     Stop();
-    Mix_FreeChunk(chunk);
+    
     
 
 }

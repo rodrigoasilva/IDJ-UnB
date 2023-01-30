@@ -1,89 +1,131 @@
-
+#include <Game.h>
 #include "Resources.h"
-#include "Game.h"
-std::unordered_map<std::string, SDL_Texture*> Resources::imageTable;
-std::unordered_map<std::string, Mix_Music*> Resources::musicTable;
-std::unordered_map<std::string, Mix_Chunk*> Resources::soundTable;
 
-SDL_Texture* Resources::GetImage(std::string file) {
+unordered_map<string, shared_ptr<SDL_Texture>> Resources::imageTable;
+unordered_map<string, shared_ptr<Mix_Music>> Resources::musicTable;
+unordered_map<string, shared_ptr<Mix_Chunk>> Resources::soundTable;
+unordered_map<string, shared_ptr<TTF_Font>> Resources::fontTable;
 
-  std::unordered_map<std::string, SDL_Texture*>::const_iterator foundIt =
-                                            Resources::imageTable.find(file);
+shared_ptr<SDL_Texture> Resources::GetImage(string file) {
+    if (imageTable.find(file) == imageTable.end()) {
+        auto texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), (file).c_str());
+        if(texture == nullptr){
+            cout << "Unable to load texture: " << SDL_GetError() << endl;
+            exit(1);
+        }
 
-  if (foundIt != Resources::imageTable.end()) {
-    return foundIt->second;
-  } else {
-    SDL_Texture* sdlTexture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file.c_str());
+        void (*deleter)(SDL_Texture *) = [] (SDL_Texture *texture) -> void {
+                SDL_DestroyTexture(texture);
+        };
 
-     if (sdlTexture == nullptr) {
-      SDL_Log("Unable to initialize Texture %s: %s", file.c_str(), SDL_GetError());
-      exit(EXIT_FAILURE);
+        auto ptr = shared_ptr<SDL_Texture>(texture, deleter);
+        imageTable.emplace(file, ptr);
+        return ptr;
     }
-
-    Resources::imageTable.insert({file, sdlTexture});
-
-
-    return sdlTexture;
-  }
+    return (*imageTable.find(file)).second;
 }
 
 void Resources::ClearImages() {
-
-  for (auto& image: Resources::imageTable) {
-    SDL_DestroyTexture(image.second);
-  }
-  Resources::imageTable.clear();
+    for (auto &iT : imageTable) {
+        const auto ptr = iT.second;
+        if (ptr.unique()) {
+            imageTable.erase(iT.first);
+        }
+    }
+    imageTable.clear();
 }
 
-Mix_Music* Resources::GetMusic(std::string file) {
+shared_ptr<Mix_Music> Resources::GetMusic(string file) {
+    if (musicTable.find(file) == musicTable.end()) {
+        auto music = Mix_LoadMUS(( file).c_str());
+        if(music == nullptr){
+            cout << "Unable to load music: " << SDL_GetError() << endl;
+            exit(1);
+        }
 
-  std::unordered_map<std::string, Mix_Music*>::const_iterator foundIt =
-                                            Resources::musicTable.find(file);
+        void (*deleter)(Mix_Music *) = [] (Mix_Music *music) -> void {
+            Mix_FreeMusic(music);
+        };
 
-  if (foundIt != Resources::musicTable.end()) {
-    return foundIt->second;
-  } else {
-    Mix_Music* mixMusic = Mix_LoadMUS(file.c_str());
-    if (mixMusic == nullptr) {
-      SDL_Log("Unable to load music Mix_LoadMUS: %s", SDL_GetError());
-      exit(EXIT_FAILURE);
+        auto ptr = shared_ptr<Mix_Music>(music, deleter);
+        musicTable.emplace(file, ptr);
+        return ptr;
     }
-    Resources::musicTable.insert({file, mixMusic});
-    return mixMusic;
-  }
+    return (*musicTable.find(file)).second;
 }
 
 void Resources::ClearMusics() {
-
-  for (auto& music: Resources::musicTable) {
-    Mix_FreeMusic(music.second);
-  }
-  Resources::musicTable.clear();
+    for (auto &mT : musicTable) {
+        const auto ptr = mT.second;
+        if (ptr.unique()) {
+            musicTable.erase(mT.first);
+        }
+    }
+    musicTable.clear();
 }
 
-Mix_Chunk* Resources::GetSound(std::string file) {
+shared_ptr<Mix_Chunk> Resources::GetSound(string file) {
+    if (soundTable.find(file) == soundTable.end()) {
+        auto chunk = Mix_LoadWAV((file).c_str());
+        if(chunk == nullptr){
+            cout << "Unable to load sound: " << SDL_GetError() << endl;
+            exit(1);
+        }
 
-  std::unordered_map<std::string, Mix_Chunk*>::const_iterator foundIt =
-                                            Resources::soundTable.find(file);
+        void (*deleter)(Mix_Chunk *) = [] (Mix_Chunk *chunk) -> void {
+            Mix_FreeChunk(chunk);
+        };
 
-  /* If found, return it, if not, create it. */
-  if (foundIt != Resources::soundTable.end()) {
-    return foundIt->second;
-  } else {
-    Mix_Chunk* mixChunk = Mix_LoadWAV(file.c_str());
-    if (mixChunk == nullptr) {
-      SDL_Log("Unable to open sound Mix_LoadWAV: %s", SDL_GetError());
-      exit(EXIT_FAILURE);
+        auto ptr = shared_ptr<Mix_Chunk>(chunk, deleter);
+        soundTable.emplace(file, ptr);
+        return ptr;
     }
-    Resources::soundTable.insert({file, mixChunk});
-    return mixChunk;
-  }
+    return (*soundTable.find(file)).second;
 }
 
 void Resources::ClearSounds() {
+    for (auto &sT : soundTable) {
+        const auto ptr = sT.second;
+        if (ptr.unique()) {
+            soundTable.erase(sT.first);
+        }
+    }
+    soundTable.clear();
+}
 
-  for (auto& sound: Resources::soundTable) {
-    Mix_FreeChunk(sound.second);
-  }
-  Resources::soundTable.clear();
+shared_ptr<TTF_Font> Resources::GetFont(string file, int size) {
+    auto key = file + to_string(size);
+    if (fontTable.find(key) == fontTable.end()) {
+        auto font = TTF_OpenFont((file).c_str(), size);
+        if(font == nullptr){
+            cout << "Unable to load font: " << SDL_GetError() << endl;
+            exit(1);
+        }
+
+        void (*deleter)(TTF_Font *) = [] (TTF_Font *font) -> void {
+            TTF_CloseFont(font);
+        };
+
+        auto ptr = shared_ptr<TTF_Font>(font, deleter);
+        fontTable.emplace(key, ptr);
+        return ptr;
+    }
+    return (*fontTable.find(key)).second;
+}
+
+void Resources::ClearFonts() {
+    for (auto &fT : fontTable) {
+        const auto ptr = fT.second;
+        if (ptr.unique()) {
+            fontTable.erase(fT.first);
+        }
+    }
+    fontTable.clear();
+}
+
+void Resources::ClearResources() {
+    ClearImages();
+    ClearMusics();
+    ClearSounds();
+    ClearFonts();
 }

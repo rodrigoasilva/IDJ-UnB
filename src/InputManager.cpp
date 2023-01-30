@@ -3,6 +3,7 @@
 #include <ctime>
 #include <cstring>
 using namespace std;
+#include <Camera.h>
 #include "InputManager.h"
 
 
